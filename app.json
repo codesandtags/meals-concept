@@ -2,6 +2,7 @@
   "expo": {
     "name": "meals-concept",
     "slug": "meals-concept",
+    "description": "A meals concept application to test to power of React Native and their features",
     "platforms": [
       "ios",
       "android",
