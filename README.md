@@ -15,7 +15,7 @@ This project contains the fundamental concepts used in every real react native p
 
 ### Splash
 
-![Image](./documentation/examples/demo-01.png =100x)
+<img src="./documentation/examples/demo-02.png" alt="Splash" />
 
 ### Meals
 
