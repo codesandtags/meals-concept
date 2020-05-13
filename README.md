@@ -15,11 +15,11 @@ This project contains the fundamental concepts used in every real react native p
 
 ### Splash
 
-<img src="./documentation/examples/demo-02.png" alt="Splash" />
+<img src="./documentation/examples/demo-01.png" alt="Splash" width="400px"/>
 
 ### Meals
 
-![Meals](./documentation/examples/demo-02.png "Meals")
+<img src="./documentation/examples/demo-02.png" alt="Meals" width="400px"/>
 
 img[*] {
    width: 150px;
