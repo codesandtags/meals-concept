@@ -8,6 +8,7 @@ import { MEALS } from '../../mocks/categories';
 import { FlatList } from 'react-native-gesture-handler';
 import MealItem from '../components/MealItem';
 import Colors from '../constants/Colors';
+import MealList from '../components/MealList';
 
 type Props = {
   navigation: StackNavigationProp;
@@ -15,32 +16,14 @@ type Props = {
 
 const CategoryMealsScreen = (props: Props) => {
   const category: Category = props.navigation.getParam('category');
-  const displayedMeals: Meal[] = MEALS.filter((meal) => meal.categoryId.includes(category.id));
-  console.log('The category id is ', category.id);
-  console.log('The meals matched are ', displayedMeals);
-
-  const goToMeals = (meal: Meal) => {
-    props.navigation.navigate(Meals, {
-      meal
-    });
-  };
-  const renderMealItem = (itemInfo: ListRenderItemInfo<Meal>) => {
-    return (
-      <MealItem
-        meal={itemInfo.item}
-        onSelectMeal={() => goToMeals(itemInfo.item)}
-      />
-    );
-  }
+  const displayedMeals: Meal[] = MEALS
+    .filter((meal) => meal.categoryId.includes(category.id));
 
   return (
-    <View style={styles.screen}>
-      <FlatList
-        style={{width: '90%'}}
-        data={displayedMeals}
-        renderItem={renderMealItem}
-      />
-    </View>
+    <MealList
+      displayedMeals={displayedMeals}
+      navigation={props.navigation}
+    />
   )
 };
 

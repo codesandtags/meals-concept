@@ -4,7 +4,8 @@ import { createAppContainer } from 'react-navigation';
 import { MaterialIcons } from '@expo/vector-icons';
 import { DefaultTheme } from 'react-native-paper';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
-
+import { Platform } from 'react-native';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import CategoriesScreen from '../screens/CategoriesScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
@@ -13,10 +14,26 @@ import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import * as Routes from './routes';
 import { Welcome } from './routes';
 import Colors from '../constants/Colors';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
 import FavoritesScreen from '../screens/FavoritesScreen';
-import WelcomeScreen from '../screens/WelcomScreen';
-import { Platform } from 'react-native';
+import WelcomeScreen from '../screens/WelcomeScreen';
+import FiltersScreen from '../screens/FiltersScreen';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+import { FONT_BOLD, FONT_REGULAR } from '../constants/Fonts';
+
+const defaultStackNavigatorOptions = {
+  headerStyle: {
+    backgroundColor: Colors.black,
+  },
+  headerTintColor: Colors.white,
+  headerTitleStyle: {
+    fontFamily: FONT_BOLD
+  },
+  headerBackTitle: 'Back',
+  animationEnabled: true,
+  headerBackTitleStyle: {
+    fontFamily: FONT_REGULAR
+  }
+};
 
 const MealsNavigator = createStackNavigator({
   [Routes.Categories]: {
@@ -36,22 +53,10 @@ const MealsNavigator = createStackNavigator({
   }
 }, {
   initialRouteName: Routes.Welcome,
-  defaultNavigationOptions: {
-    headerStyle: {
-      backgroundColor: Colors.black,
-    },
-    headerTintColor: Colors.white,
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-    headerBackTitle: 'Back',
-    animationEnabled: true,
-  },
+  defaultNavigationOptions: defaultStackNavigatorOptions,
   navigationOptions: (navigationOptions: any) => {
     let tabBarVisible = true;
 
-
-    console.log('Showing state : ', navigationOptions.navigation.state.routes);
     if (navigationOptions.navigation.state
       && navigationOptions.navigation.state.routes.length > 0
       && navigationOptions.navigation.state.routes.some((route: any) => route.routeName === Welcome)) {
@@ -64,6 +69,17 @@ const MealsNavigator = createStackNavigator({
   }
 });
 
+const FavNavigator = createStackNavigator({
+  [Routes.Favorites]: {
+    screen: FavoritesScreen,
+  },
+  [Routes.Meals]: {
+    screen: MealDetailScreen,
+  },
+}, {
+  defaultNavigationOptions: defaultStackNavigatorOptions
+});
+
 const tabScreenConfigRoutes = {
   Meals: {
     screen: MealsNavigator,
@@ -74,7 +90,7 @@ const tabScreenConfigRoutes = {
     }
   },
   Favorites: {
-    screen: FavoritesScreen,
+    screen: FavNavigator,
     navigationOptions: {
       tabBarIcon: (tabInfo: any): ReactElement => (
         <MaterialIcons name="favorite" color={tabInfo.tintColor} size={24}/>
@@ -105,4 +121,31 @@ const MealsTabFavNavigator = Platform.OS === 'android'
   })
   : createBottomTabNavigator(tabScreenConfigRoutes, tabScreenConfigOptions);
 
-export default createAppContainer(MealsTabFavNavigator);
+const FiltersNavigator = createStackNavigator({
+  [Routes.Filters]: {
+    screen: FiltersScreen,
+  }
+}, {
+  defaultNavigationOptions: defaultStackNavigatorOptions
+})
+const MainNavigator = createDrawerNavigator({
+  MealsFav: {
+    screen: MealsTabFavNavigator,
+    navigationOptions: {
+      drawerLabel: 'Meals Categories'
+    }
+  },
+  Filters: {
+    screen: FiltersNavigator,
+    navigationOptions: {
+      drawerLabel: 'Filters'
+    }
+  }
+}, {
+  contentOptions: {
+    activeTintColor: Colors.primaryColor,
+    activeBackgroundColor: Colors.gray
+  }
+});
+
+export default createAppContainer(MainNavigator);

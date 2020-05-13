@@ -8,9 +8,11 @@ import { CATEGORIES } from '../../mocks/categories';
 import { Category } from '../models/Category';
 
 import CategoryGridTile from '../components/CategoryGridTile';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import CustomHeaderButton from '../components/CustomHeaderButton';
 
 type Props = {
-  navigation: StackNavigationProp;
+  navigation: any;
 };
 
 const CategoriesScreen = (props: Props) => {
@@ -41,6 +43,26 @@ const CategoriesScreen = (props: Props) => {
     </View>
   )
 };
+
+CategoriesScreen.navigationOptions = (props: Props) => {
+  return {
+    title: 'Meal Categories',
+    headerLeft: (navigationProperties: any) => {
+      return (
+        <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
+          <Item
+            title='Menu'
+            iconName="menu"
+            onPress={() => {
+              console.log('Showing drawer...', props.navigation.toggleDrawer());
+              // navigationProperties.navigation.toggleDrawer();
+            }}
+          />
+        </HeaderButtons>
+      )
+    }
+  }
+}
 
 const styles = StyleSheet.create({
   screen: {
