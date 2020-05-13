@@ -1,6 +1,6 @@
 # Meals Concept
 
-This project is being inspired by the Meals Application, which was created by [Maximiliam](https://github.com/aneagoie/face-recognition-brain)
+This project is being inspired by the Meals Application, which was created by [maxschwarzmueller](https://github.com/maxschwarzmueller)
 in the [React Native the practical guide](https://www.udemy.com/course/react-native-the-practical-guide/).
 
 This project contains the fundamental concepts used in every real react native project like:

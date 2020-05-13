@@ -1,10 +1,20 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
+import { StackNavigationProp } from 'react-navigation-stack/lib/typescript/src/vendor/types';
 
-const MealDetailScreen = () => {
+type Props = {
+  navigation: StackNavigationProp;
+};
+
+const MealDetailScreen = (props: Props) => {
+    const goToHome = () => {
+      props.navigation.popToTop();
+    }
+
     return (
         <View style={styles.screen}>
             <Text>Welcome to this MealDetailScreen</Text>
+          <Button title="Go to Home" onPress={goToHome}/>
         </View>
     )
 };

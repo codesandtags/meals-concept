@@ -4,11 +4,12 @@ import { StyleSheet } from 'react-native';
 import * as Fonts from 'expo-font';
 import { AppLoading } from 'expo';
 import MealsNavigator from './src/navigation/MealsNavigator';
+import { FONT_BOLD, FONT_REGULAR } from './src/constants/Fonts';
 
 const fetchFonts = () => {
   return Fonts.loadAsync({
-    'Montserrat': require('./assets/fonts/Montserrat-Regular.ttf'),
-    'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
+    [FONT_REGULAR]: require('./assets/fonts/Montserrat-Regular.ttf'),
+    [FONT_BOLD]: require('./assets/fonts/Montserrat-Bold.ttf'),
   });
 }
 

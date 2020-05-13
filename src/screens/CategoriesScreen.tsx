@@ -1,22 +1,42 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import { NavigationParams } from 'react-navigation';
+import { ListRenderItemInfo, StyleSheet, View } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 import { StackNavigationProp } from 'react-navigation-stack/lib/typescript/src/vendor/types';
+
+import { CategoryMeals } from '../navigation/routes';
+import { CATEGORIES } from '../../mocks/categories';
+import { Category } from '../models/Category';
+
+import CategoryGridTile from '../components/CategoryGridTile';
 
 type Props = {
   navigation: StackNavigationProp;
 };
 
 const CategoriesScreen = (props: Props) => {
-
-  const handleGoToMeals = () => {
-    props.navigation.navigate('CategoryMeals');
+  const goToCategoryMeals = (category: Category) => {
+    props.navigation.navigate(CategoryMeals, {
+      category
+    });
+  };
+  const renderGridItem = (itemInfo: ListRenderItemInfo<Category>) => {
+    return (
+      <CategoryGridTile
+        title={itemInfo.item.title}
+        color={itemInfo.item.color}
+        icon={itemInfo.item.icon}
+        onSelect={() => goToCategoryMeals(itemInfo.item)}
+      />
+    )
   };
 
   return (
     <View style={styles.screen}>
-      <Text>Welcome to this CategoriesScreen</Text>
-      <Button title="Go to Meals" onPress={handleGoToMeals}/>
+      <FlatList
+        numColumns={2}
+        data={CATEGORIES}
+        renderItem={renderGridItem}
+      />
     </View>
   )
 };
