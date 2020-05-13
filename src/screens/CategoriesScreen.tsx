@@ -25,6 +25,7 @@ const CategoriesScreen = (props: Props) => {
         title={itemInfo.item.title}
         color={itemInfo.item.color}
         icon={itemInfo.item.icon}
+        image={itemInfo.item.image}
         onSelect={() => goToCategoryMeals(itemInfo.item)}
       />
     )

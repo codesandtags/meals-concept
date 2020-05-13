@@ -7,60 +7,70 @@ export const CATEGORIES: Category[] = [
     title: 'Italian',
     color: '#f5428d',
     icon: 'food-fork-drink',
+    image: 'italy'
   },
   {
     id: 'c2',
     title: 'Quick & Easy',
     color: '#f54242',
     icon: 'food-croissant',
+    image: 'default'
   },
   {
     id: 'c3',
     title: 'Hamburgers',
     color: '#f5a442',
     icon: 'food',
+    image: 'hamburger'
   },
   {
     id: 'c4',
     title: 'German',
     color: '#f5d142',
     icon: 'food-fork-drink',
+    image: 'german'
   },
   {
     id: 'c5',
     title: 'Light & Lovely',
     color: '#368dff',
     icon: 'food-apple',
+    image: 'light'
   },
   {
     id: 'c6',
     title: 'Exotic',
     color: '#41d95d',
     icon: 'food-fork-drink',
+    image: 'exotic'
   },
   {
     id: 'c7',
     title: 'Breakfast',
     color: '#9eecff',
     icon: 'food-croissant',
+    image: 'default'
   },
   {
     id: 'c8',
     title: 'Asian',
     color: '#b9ffb0',
     icon: 'fish',
+    image: 'asian'
   },
   {
     id: 'c9',
     title: 'French',
     color: '#ffc7ff',
     icon: 'food-fork-drink',
+    image: 'france'
   },
   {
     id: 'c10',
     title: 'Summer',
     color: '#47fced',
     icon: 'sunglasses',
+    image: 'summer'
   },
 ];
 
