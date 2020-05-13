@@ -15,9 +15,9 @@ This project contains the fundamental concepts used in every real react native p
 
 ### Splash
 
-<div style="display: flex">
-    <img src="./documentation/examples/demo-01.png" alt="Splash" width="400px"/>
-    <img src="./documentation/examples/demo-02.png" alt="Meals" width="400px"/>
+<div style="display: flex; justify-content: space-between; width: 100%">
+    <img src="./documentation/examples/demo-01.png" alt="Splash" width="200px"/>
+    <img src="./documentation/examples/demo-02.png" alt="Meals" width="200px"/>
 </div>
 
 
