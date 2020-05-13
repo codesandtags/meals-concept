@@ -15,12 +15,16 @@ This project contains the fundamental concepts used in every real react native p
 
 ### Splash
 
-![Splahs](./documentation/examples/demo-01.png "Splash")
+![Image](./documentation/examples/demo-01.png =100x)
 
 ### Meals
 
-![Splahs](./documentation/examples/demo-02.png "Meals")
+![Meals](./documentation/examples/demo-02.png "Meals")
 
+img[*] {
+   width: 150px;
+   height: 100px;
+}
 
 
 ## Dependencies
