@@ -36,12 +36,13 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     width: '100%',
     height: 280,
-    backgroundColor: Colors.gray,
-    shadowColor: Colors.black,
-    shadowOffset: {width: 0, height: 2},
-    shadowRadius: 5,
-    shadowOpacity: 0.3,
+    backgroundColor: Colors.white,
+    shadowColor: Colors.white,
+    shadowOffset: {width: 2, height: 3},
+    shadowRadius: 10,
+    shadowOpacity: 1,
     borderRadius: 10,
+    overflow: 'hidden'
   },
   mealImage: {
     height: '100%',

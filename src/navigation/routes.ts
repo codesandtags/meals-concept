@@ -2,3 +2,4 @@
 export const Categories = 'Categories';
 export const CategoryMeals = 'CategoryMeals';
 export const Meals = 'Meals';
+export const Welcome = 'Welcome';

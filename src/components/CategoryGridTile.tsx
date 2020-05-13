@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Colors from '../constants/Colors';
 import { MaterialCommunityIcons } from '@expo/vector-icons'
@@ -27,9 +27,10 @@ const CategoryGridTile = (props: Props) => {
 const styles = StyleSheet.create({
   gridItem: {
     flex: 1,
-    margin: 15,
+    margin: 10,
     height: 90,
-    width: 150
+    width: 150,
+    overflow: Platform.OS === 'android'? 'hidden': 'visible'
   },
   container: {
     backgroundColor: Colors.secondaryColor,

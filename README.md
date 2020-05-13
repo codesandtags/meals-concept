@@ -11,6 +11,18 @@ This project contains the fundamental concepts used in every real react native p
    * redux-devtools-extension middleware
    * redux-logger
 
+## Examples
+
+### Splash
+
+![Splahs](./documentation/examples/demo-01.png "Splash")
+
+### Meals
+
+![Splahs](./documentation/examples/demo-02.png "Meals")
+
+
+
 ## Dependencies
 
 |  Dependency | Description  |
