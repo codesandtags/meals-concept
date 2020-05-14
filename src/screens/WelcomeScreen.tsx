@@ -3,7 +3,7 @@ import { ImageBackground, StyleSheet, View } from 'react-native';
 import { StackNavigationProp } from 'react-navigation-stack/lib/typescript/src/vendor/types';
 
 import Colors from '../constants/Colors';
-import { Categories, Meals } from '../navigation/routes';
+import { Categories, MealDetail } from '../navigation/routes';
 
 type Props = {
   navigation: StackNavigationProp;

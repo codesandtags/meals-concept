@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { StackNavigationProp } from 'react-navigation-stack/lib/typescript/src/vendor/types';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
@@ -9,6 +9,9 @@ import { Meal } from '../models/Meal';
 import { ScrollView } from 'react-native-gesture-handler';
 import { FONT_BOLD, FONT_REGULAR } from '../constants/Fonts';
 import Colors from '../constants/Colors';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleFavorite } from '../store/actions/mealsActions';
+import { RootState } from '../store/reducers/mealsReducer';
 
 type Props = {
   navigation: StackNavigationProp;
@@ -16,18 +19,34 @@ type Props = {
 
 const MealDetailScreen = (props: Props) => {
   const meal: Meal = props.navigation.getParam('meal');
+  const navigation: StackNavigationProp = props.navigation;
   const goToHome = () => {
-    props.navigation.popToTop();
-  }
+    navigation.popToTop()
+  };
+  if (!meal) goToHome();
+  const isFavorite = useSelector((state: RootState) => {
+    return state
+      .meals
+      .favoriteMeals
+      .some(currentMeal => currentMeal.id === meal.id)
+  });
 
-  if (!meal) {
-    goToHome();
-  }
+  const dispatch = useDispatch();
+  const toggleFavoriteHandler = useCallback(() => {
+    dispatch(toggleFavorite(meal));
+  }, [dispatch, meal]);
+
+  useEffect(() => {
+    navigation.setParams({
+      toggleFavorite: toggleFavoriteHandler,
+      isFavorite: isFavorite
+    });
+  }, [toggleFavoriteHandler, isFavorite])
 
   const renderIngredients = () => {
-    return meal.ingredients.map((ingredient) => {
+    return meal.ingredients.map((ingredient, index) => {
       return (
-        <View style={styles.mealStep}>
+        <View style={styles.mealStep} key={`${index}`}>
           <Entypo
             name="circle"
             size={18}
@@ -42,9 +61,9 @@ const MealDetailScreen = (props: Props) => {
   }
 
   const renderSteps = () => {
-    return meal.steps.map((step) => {
+    return meal.steps.map((step, index) => {
       return (
-        <View style={styles.mealStep}>
+        <View style={styles.mealStep} key={`${index}`}>
           <MaterialIcons
             name="check-box-outline-blank"
             size={20}
@@ -80,6 +99,9 @@ const MealDetailScreen = (props: Props) => {
 
 MealDetailScreen.navigationOptions = (props: Props) => {
   const meal: Meal = props.navigation.getParam('meal');
+  const toggleFavorite = props.navigation.getParam('toggleFavorite');
+  const isFavorite = props.navigation.getParam('isFavorite');
+  const iconName = isFavorite ? 'favorite': 'favorite-border';
 
   return {
     title: meal.title,
@@ -88,9 +110,9 @@ MealDetailScreen.navigationOptions = (props: Props) => {
         <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
           <Item
             title='Favorite'
-            iconName="favorite"
+            iconName={iconName}
             onPress={() => {
-              console.log('Favorite Pressed')
+              toggleFavorite();
             }}
           />
         </HeaderButtons>

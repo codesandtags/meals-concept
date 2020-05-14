@@ -1,20 +1,30 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { StackNavigationProp } from 'react-navigation-stack/lib/typescript/src/vendor/types';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import MealList from '../components/MealList';
-import { Meal } from '../models/Meal';
-import { MEALS } from '../../mocks/categories';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import CustomHeaderButton from '../components/CustomHeaderButton';
+import { RootState } from '../store/reducers/mealsReducer';
 
 type Props = {
   navigation: any;
 };
 
 const FavoritesScreen = (props: Props) => {
-  const favoriteMeals: Meal[] = MEALS
-    .filter((meal) => meal.isVegetarian);
+  const favoriteMeals = useSelector((state: RootState) => state.meals.favoriteMeals);
+
+  if (favoriteMeals && favoriteMeals.length === 0) {
+    return (
+      <View style={styles.mealsNotFound}>
+        <Image
+          source={require('../../assets/images/no_meals.png')}
+          style={styles.mealsNotFoundImage}
+        />
+        <Text>No favorite meals found. Start adding some to see them!</Text>
+      </View>
+    )
+  }
 
   return (
     <MealList
@@ -44,6 +54,17 @@ FavoritesScreen.navigationOptions = (props: Props) => {
   }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  mealsNotFound: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  mealsNotFoundImage: {
+    width: '50%',
+    resizeMode: 'contain'
+  }
+});
 
 export default FavoritesScreen;

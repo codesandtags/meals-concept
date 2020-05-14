@@ -3,7 +3,7 @@ import { ListRenderItemInfo, StyleSheet, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { Meal } from '../models/Meal';
 import MealItem from './MealItem';
-import { Meals } from '../navigation/routes';
+import { MealDetail } from '../navigation/routes';
 import { StackNavigationProp } from 'react-navigation-stack/lib/typescript/src/vendor/types';
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 
 const MealList = (props: Props) => {
   const goToMeals = (meal: Meal) => {
-    props.navigation.navigate(Meals, {
+    props.navigation.navigate(MealDetail, {
       meal
     });
   };

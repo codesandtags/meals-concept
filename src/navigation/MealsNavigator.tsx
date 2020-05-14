@@ -45,7 +45,7 @@ const MealsNavigator = createStackNavigator({
   [Routes.CategoryMeals]: {
     screen: CategoryMealsScreen,
   },
-  [Routes.Meals]: {
+  [Routes.MealDetail]: {
     screen: MealDetailScreen,
   },
   [Routes.Welcome]: {
@@ -73,7 +73,7 @@ const FavNavigator = createStackNavigator({
   [Routes.Favorites]: {
     screen: FavoritesScreen,
   },
-  [Routes.Meals]: {
+  [Routes.MealDetail]: {
     screen: MealDetailScreen,
   },
 }, {
@@ -132,7 +132,7 @@ const MainNavigator = createDrawerNavigator({
   MealsFav: {
     screen: MealsTabFavNavigator,
     navigationOptions: {
-      drawerLabel: 'Meals Categories'
+      drawerLabel: 'MealDetail Categories'
     }
   },
   Filters: {

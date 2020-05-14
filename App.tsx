@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
+import { createStore, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
 
 import * as Fonts from 'expo-font';
 import { AppLoading } from 'expo';
 import MealsNavigator from './src/navigation/MealsNavigator';
 import { FONT_BOLD, FONT_REGULAR } from './src/constants/Fonts';
+import mealsReducer, { MealsState } from './src/store/reducers/mealsReducer';
 
 const fetchFonts = () => {
   return Fonts.loadAsync({
@@ -12,6 +15,11 @@ const fetchFonts = () => {
     [FONT_BOLD]: require('./assets/fonts/Montserrat-Bold.ttf'),
   });
 }
+
+const rootReducer = combineReducers({
+  meals: mealsReducer
+})
+const store = createStore(rootReducer);
 
 export default function App() {
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -26,7 +34,9 @@ export default function App() {
   }
 
   return (
-    <MealsNavigator/>
+    <Provider store={store}>
+      <MealsNavigator/>
+    </Provider>
   );
 }
 

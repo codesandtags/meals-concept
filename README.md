@@ -1,6 +1,6 @@
-# Meals Concept
+# MealDetail Concept
 
-This project is being inspired by the Meals Application, which was created by [maxschwarzmueller](https://github.com/maxschwarzmueller)
+This project is being inspired by the MealDetail Application, which was created by [maxschwarzmueller](https://github.com/maxschwarzmueller)
 in the [React Native the practical guide](https://www.udemy.com/course/react-native-the-practical-guide/).
 
 This project contains the fundamental concepts used in every real react native project like:
@@ -18,7 +18,7 @@ This project contains the fundamental concepts used in every real react native p
 <div style="display: flex; justify-content: space-between; width: 100%">
     <img src="./documentation/examples/demo-01.png" alt="Splash" width="200px"/>
     <img src="./documentation/examples/demo-03.png" alt="Meal Categories" width="200px"/>
-    <img src="./documentation/examples/demo-02.png" alt="Meals" width="200px"/>
+    <img src="./documentation/examples/demo-02.png" alt="MealDetail" width="200px"/>
 </div>
 
 
