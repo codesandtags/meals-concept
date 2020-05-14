@@ -11,7 +11,7 @@ import { FONT_BOLD, FONT_REGULAR } from '../constants/Fonts';
 import Colors from '../constants/Colors';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFavorite } from '../store/actions/mealsActions';
-import { RootState } from '../store/reducers/mealsReducer';
+import { RootState } from '../models/MealState';
 
 type Props = {
   navigation: StackNavigationProp;

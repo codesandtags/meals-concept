@@ -1,16 +1,8 @@
 import { MEALS } from '../../../mocks/categories';
-import { Meal } from '../../models/Meal';
-import { Action, TOGGLE_FAVORITE } from '../actions/mealsActions';
-
-export interface MealsState {
-  meals: Meal[];
-  filteredMeals: Meal[];
-  favoriteMeals: Meal[];
-}
-
-export interface RootState {
-  meals: MealsState
-}
+import { SET_FILTERS, TOGGLE_FAVORITE } from '../actions/mealsActions';
+import { MealsState } from '../../models/MealState';
+import { Action } from '../../models/Action';
+import { Filters } from '../../models/Filters';
 
 const initialState: MealsState = {
   meals: [...MEALS],
@@ -43,6 +35,29 @@ const mealsReducer = (state = initialState, action: Action) => {
         }
 
       }
+
+    case SET_FILTERS:
+      const appliedFilters: Filters = action.payload;
+      const updatedFilteredMeals = state.meals.filter(meal => {
+        if (appliedFilters.isGlutenFree && !meal.isGlutenFree) {
+          return false;
+        }
+        if (appliedFilters.isLactoseFree && !meal.isLactoseFree) {
+          return false;
+        }
+        if (appliedFilters.isVegan && !meal.isVegan) {
+          return false;
+        }
+        if (appliedFilters.isVegetarian && !meal.isVegetarian) {
+          return false;
+        }
+        return true;
+      });
+
+      return {
+        ...state,
+        filteredMeals: [...updatedFilteredMeals]
+      };
 
     default:
 

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { createStore, combineReducers } from 'redux';
+import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import * as Fonts from 'expo-font';
 import { AppLoading } from 'expo';
 import MealsNavigator from './src/navigation/MealsNavigator';
 import { FONT_BOLD, FONT_REGULAR } from './src/constants/Fonts';
-import mealsReducer, { MealsState } from './src/store/reducers/mealsReducer';
+import mealsReducer from './src/store/reducers/mealsReducer';
 
 const fetchFonts = () => {
   return Fonts.loadAsync({

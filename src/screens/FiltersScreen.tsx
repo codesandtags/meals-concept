@@ -1,10 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { Switch } from 'react-native-paper';
-import CustomHeaderButton from '../components/CustomHeaderButton';
+
 import { FONT_BOLD } from '../constants/Fonts';
+import CustomHeaderButton from '../components/CustomHeaderButton';
 import Colors from '../constants/Colors';
+import { Filters } from '../models/Filters';
+import { useDispatch } from 'react-redux';
+import { setFilters } from '../store/actions/mealsActions';
+import { StackNavigationProp } from 'react-navigation-stack/lib/typescript/src/vendor/types';
 
 type Props = {
   navigation: any;
@@ -15,15 +20,26 @@ const FiltersScreen = (props: Props) => {
   const [isVegan, setIsVegan] = useState(false);
   const [isVegetarian, setIsVegetarian] = useState(false);
   const [isLactoseFree, setIsLactoseFree] = useState(false);
+  const navigation: StackNavigationProp  = props.navigation;
 
-  const saveFilters = () => {
-    const appliedFilters = {
+  const dispatch = useDispatch();
+  const saveFilters = useCallback(() => {
+    const appliedFilters: Filters = {
       isGlutenFree,
       isVegan,
       isVegetarian,
       isLactoseFree
     }
-  }
+
+    console.log('Saving Filters with: ', appliedFilters);
+    dispatch(setFilters(appliedFilters));
+  }, [isGlutenFree, isVegan, isVegetarian, isLactoseFree]);
+
+  useEffect(() => {
+    navigation.setParams({
+      save: saveFilters
+    });
+  }, [saveFilters]);
 
   return (
     <View style={styles.screen}>
@@ -70,8 +86,7 @@ FiltersScreen.navigationOptions = (props: Props) => {
             title='Menu'
             iconName="menu"
             onPress={() => {
-              console.log('Showing drawer...', props.navigation.toggleDrawer());
-              // navigationProperties.navigation.toggleDrawer();
+              props.navigation.toggleDrawer();
             }}
           />
         </HeaderButtons>
@@ -83,9 +98,7 @@ FiltersScreen.navigationOptions = (props: Props) => {
           <Item
             title='Save'
             iconName="save"
-            onPress={() => {
-              console.log('Saving changes...');
-            }}
+            onPress={props.navigation.getParam('save')}
           />
         </HeaderButtons>
       )

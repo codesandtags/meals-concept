@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import MealList from '../components/MealList';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import CustomHeaderButton from '../components/CustomHeaderButton';
-import { RootState } from '../store/reducers/mealsReducer';
+import { RootState } from '../models/MealState';
 
 type Props = {
   navigation: any;
